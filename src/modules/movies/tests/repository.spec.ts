@@ -1,9 +1,9 @@
-import createTestDatabase from '@tests/utils/createTestDatabase'
+import { createTestDatabase } from '@tests/utils/createTestDatabase'
 import { createFor } from '@tests/utils/records'
-import buildRepository from '../repository'
+import { createMoviesRepository } from '../repository'
 
 const db = await createTestDatabase()
-const repository = buildRepository(db)
+const repository = createMoviesRepository(db)
 const createMovies = createFor(db, 'movies')
 
 describe('findAll', () => {
@@ -21,7 +21,7 @@ describe('findAll', () => {
 
 		expect(movies).toEqual([
 			{
-				id: expect.any(Number),
+				id: 1,
 				title: 'Sherlock Holmes',
 				year: 2009,
 			},

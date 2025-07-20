@@ -1,10 +1,10 @@
-import { Router } from 'express'
 import type { Database } from '@/database'
 import { jsonRoute } from '@/utils/middleware'
-import buildRespository from './repository'
+import { Router } from 'express'
+import { createMoviesRepository } from './repository'
 
-export default (db: Database) => {
-	const messages = buildRespository(db)
+export const createMoviesController = (db: Database) => {
+	const messages = createMoviesRepository(db)
 	const router = Router()
 
 	router.get(
@@ -18,7 +18,7 @@ export default (db: Database) => {
 			}
 
 			// a hard-coded solution for your first controller test
-			const ids = req.query.id!.split(',').map(Number)
+			const ids = req.query.id.split(',').map(Number)
 			const movies = await messages.findByIds(ids)
 
 			res.status(200)

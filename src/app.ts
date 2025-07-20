@@ -1,16 +1,14 @@
-import express from 'express'
-import jsonErrorHandler from './middleware/jsonErrors'
+import { createMoviesController } from '@/modules/movies/controller'
+import express, { json } from 'express'
 import { type Database } from './database'
-import movies from '@/modules/movies/controller'
+import { jsonErrorHandler } from './middleware/json-error-handler'
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function createApp(db: Database) {
+export function createApp(db: Database) {
 	const app = express()
 
-	app.use(express.json())
+	app.use(json())
 
-	// register your controllers here
-	app.use('/movies', movies(db))
+	app.use('/movies', createMoviesController(db))
 
 	app.use(jsonErrorHandler)
 

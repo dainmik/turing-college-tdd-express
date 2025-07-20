@@ -1,6 +1,6 @@
 import type { Database } from '@/database'
 
-export default (db: Database) => ({
+export const createMoviesRepository = (db: Database) => ({
 	findAll: async (limit = 10, offset = 0) =>
 		db.selectFrom('movies').selectAll().limit(limit).offset(offset).execute(),
 

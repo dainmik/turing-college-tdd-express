@@ -1,9 +1,10 @@
-/* eslint-disable no-console */
-import 'dotenv/config'
-import * as path from 'node:path'
-import * as fs from 'node:fs/promises'
+#!/usr/bin/env -S pnpm tsx
+
 import SQLite, { type Database } from 'better-sqlite3'
+import 'dotenv/config'
 import { FileMigrationProvider, Kysely, SqliteDialect } from 'kysely'
+import * as fs from 'node:fs/promises'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { migrateToLatest } from '.'
 
@@ -55,8 +56,8 @@ if (isRunDirectly) {
 	const { DATABASE_URL } = process.env
 
 	if (typeof DATABASE_URL !== 'string') {
-		throw new Error('Provide DATABASE_URL in your environment variables.')
+		throw new TypeError('Provide DATABASE_URL in your environment variables.')
 	}
 
-	migrateDefault(DATABASE_URL)
+	await migrateDefault(DATABASE_URL)
 }

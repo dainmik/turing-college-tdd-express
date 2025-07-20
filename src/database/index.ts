@@ -3,7 +3,7 @@ import { CamelCasePlugin, Kysely, SqliteDialect } from 'kysely'
 import SQlite from 'better-sqlite3'
 import { type DB } from './types'
 
-export default function createDatabase(url: string, { readonly = false } = {}) {
+export function createDatabase(url: string, { readonly = false } = {}) {
 	return new Kysely<DB>({
 		dialect: new SqliteDialect({
 			database: new SQlite(url, { readonly }),

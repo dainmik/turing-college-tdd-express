@@ -1,9 +1,9 @@
 import { StatusCodes } from 'http-status-codes'
 
-export default class MethodNotAllowed extends Error {
+export class MethodNotAllowed extends Error {
 	status: number
 
-	constructor(message: string = 'Method not allowed') {
+	constructor(message = 'Method not allowed') {
 		super(message)
 		this.status = StatusCodes.METHOD_NOT_ALLOWED
 	}

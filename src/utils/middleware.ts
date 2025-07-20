@@ -1,11 +1,11 @@
 import {
-	type Response,
-	type Request,
 	type NextFunction,
+	type Request,
 	type RequestHandler,
+	type Response,
 } from 'express'
 import { StatusCodes } from 'http-status-codes'
-import MethodNotAllowed from './errors/MethodNotAllowed'
+import { MethodNotAllowed } from './errors/method-not-allowed'
 
 type JsonHandler<T> = (
 	req: Request,

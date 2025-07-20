@@ -8,28 +8,44 @@ const isTest = NODE_ENV === 'test'
 /**
  * Reports error in a simple structured JSON format.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const jsonErrors: ErrorRequestHandler = (error, _req, res, _next) => {
+export const jsonErrorHandler: ErrorRequestHandler = (
+	error,
+	_req,
+	res,
+	// Express requires all parameters to be present to recognize
+	// the function as an error handler, so we have to add this
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	_next
+) => {
 	const statusCode = getErrorStatusCode(error)
 
 	// display error in the console
 	if (!isTest) {
 		// tests tend to produce errors on purpose and
 		// we don't want to pollute the console expected behavior
-		// eslint-disable-next-line no-console
+
 		console.error(error)
 	}
 
+	const messagePayload =
+		error instanceof Error ? error.message : 'Internal server error'
+	const errorPayload = error instanceof Error ? error : {}
+
 	res.status(statusCode).json({
 		error: {
-			message: error.message ?? 'Internal server error',
-			...error,
+			message: messagePayload,
+			...errorPayload,
 		},
 	})
 }
 
-function getErrorStatusCode(error: Error) {
-	if ('status' in error && typeof error.status === 'number') {
+function getErrorStatusCode(error: unknown) {
+	if (
+		typeof error === 'object' &&
+		error != null &&
+		'status' in error &&
+		typeof error.status === 'number'
+	) {
 		return error.status
 	}
 
@@ -39,5 +55,3 @@ function getErrorStatusCode(error: Error) {
 	// assume the worst
 	return StatusCodes.INTERNAL_SERVER_ERROR
 }
-
-export default jsonErrors
