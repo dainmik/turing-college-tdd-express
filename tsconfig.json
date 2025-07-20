@@ -1,24 +1,24 @@
 {
-  "extends": "@tsconfig/node18/tsconfig.json",
-  "include": ["**/*.ts"],
+	"extends": "@tsconfig/node22/tsconfig.json",
+	"include": ["**/*.ts"],
 
-  "compilerOptions": {
-    "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "dist",
+	"compilerOptions": {
+		"baseUrl": ".",
+		"rootDir": ".",
+		"outDir": "dist",
 
-    "module": "ESNext",
-    "target": "ESNext",
-    "moduleResolution": "Node",
+		"module": "ESNext",
+		"target": "ESNext",
+		"moduleResolution": "Node",
 
-    "strict": true,
-    "sourceMap": true,
+		"strict": true,
+		"sourceMap": true,
 
-    "types": ["vitest/globals"],
+		"types": ["vitest/globals"],
 
-    "paths": {
-      "@/*": ["./src/*"],
-      "@tests/*": ["./tests/*"]
-    }
-  }
+		"paths": {
+			"@/*": ["./src/*"],
+			"@tests/*": ["./tests/*"]
+		}
+	}
 }
