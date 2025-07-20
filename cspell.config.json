@@ -1,0 +1,48 @@
+// https://cspell.org/docs/Configuration
+
+{
+	"$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/refs/heads/main/cspell.schema.json",
+	"version": "0.2",
+	"language": "en",
+	"enableGlobDot": true,
+	"useGitignore": true,
+	"ignorePaths": [".git", "pnpm-lock.yaml"],
+	"dictionaries": ["custom-english", "custom-npm"],
+	"dictionaryDefinitions": [
+		{
+			"name": "custom-english",
+			"path": "./cspell/english-extension.txt",
+			"addWords": true
+		},
+		{
+			"name": "custom-npm",
+			"path": "./cspell/npm-extension.txt",
+			"addWords": true
+		}
+	],
+	"overrides": [
+		{
+			"filename": "cspell.config.json",
+			"words": [
+				"dbaeumer",
+				"devcontainer",
+				"esbenp",
+				"njsproj",
+				"ntvs",
+				"YoavBls"
+			]
+		},
+		{
+			"filename": [
+				".devcontainer/devcontainer.json",
+				".vscode/extensions.json",
+				".vscode/settings.json"
+			],
+			"words": ["dbaeumer", "devcontainer", "esbenp", "YoavBls"]
+		},
+		{
+			"filename": ".gitignore",
+			"words": ["njsproj", "ntvs"]
+		}
+	]
+}

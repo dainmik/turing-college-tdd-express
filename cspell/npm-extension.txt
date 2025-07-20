@@ -1,0 +1,4 @@
+esbuild
+kysely
+kysely-codegen
+vitest
